@@ -1,18 +1,53 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.jyjor.angularfilepicker</id>
-    <name>angular-file-picker</name>
+    <name>Angular File Picker</name>
     <vendor>jyjor</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.jyjor.angularfilepicker.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.jyjor.angularfilepicker.services.MyProjectService"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="com.github.jyjor.angularfilepicker.settings.AppSettingsConfigurable"
+                id="com.github.jyjor.angularfilepicker.settings.AppSettingsConfigurable"
+                displayName="Angular File Picker"/>
+        <applicationService serviceImplementation="com.github.jyjor.angularfilepicker.settings.AppSettingsState"/>
     </extensions>
 
+    <actions>
+        <action
+                id="angularfilepicker.OpenClassFile"
+                class="com.github.jyjor.angularfilepicker.actions.OpenClassFileAction"
+                text="Open Class File"
+                description="Open and switch to class file">
+            <keyboard-shortcut first-keystroke="alt U" keymap="$default"/>
+        </action>
+        <action
+                id="angularfilepicker.OpenTemplateFile"
+                class="com.github.jyjor.angularfilepicker.actions.OpenTemplateFileAction"
+                text="Open Template File"
+                description="Open and switch to template file">
+            <keyboard-shortcut first-keystroke="alt O" keymap="$default"/>
+        </action>
+        <action
+                id="angularfilepicker.OpenStyleFile"
+                class="com.github.jyjor.angularfilepicker.actions.OpenStyleFileAction"
+                text="Open Style File"
+                description="Open and switch to style file">
+            <keyboard-shortcut first-keystroke="alt I" keymap="$default"/>
+        </action>
+        <action
+                id="angularfilepicker.OpenTestFile"
+                class="com.github.jyjor.angularfilepicker.actions.OpenTestFileAction"
+                text="Open Test File"
+                description="Open and switch to test file">
+            <keyboard-shortcut first-keystroke="alt P" keymap="$default"/>
+        </action>
+    </actions>
+
     <applicationListeners>
-        <listener class="com.github.jyjor.angularfilepicker.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener class="com.github.jyjor.angularfilepicker.listeners.FileOpenedListener"
+                  topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
     </applicationListeners>
 </idea-plugin>
