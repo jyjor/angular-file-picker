@@ -55,7 +55,7 @@ class AppSettingsState : PersistentStateComponent<AppSettingsState> {
         private const val DEFAULT_TEST_FILE_EXTENSIONS = ".spec.ts"
         private val DEFAULT_TEST_NEXT_ACTION = Action.PREVIOUS_FILE
 
-        private val DEFAULT_GROUPING = Grouping.TAB_GROUP
-        private val DEFAULT_CLOSE_BEHAVIOR = CloseBehavior.ONLY_ON_ACTION
+        private val DEFAULT_GROUPING = Grouping.EVERYWHERE
+        private val DEFAULT_CLOSE_BEHAVIOR = CloseBehavior.NEVER
     }
 }
